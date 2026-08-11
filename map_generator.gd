@@ -7,7 +7,7 @@ extends Node3D
 @export var segments_per_straight: int = 5
 @export var max_depth: int = 4
 @export var obstacle_spawn_chance: float = 0.3
-@export var branch_chance: float = 0.4 # reduced to account for 5 possible directions
+@export var branch_chance: float = 0.4
 
 var visited_positions: Array[Vector3] = []
 
@@ -65,11 +65,11 @@ func generate_branch(head: Dictionary, queue: Array[Dictionary]) -> void:
 	var right: Vector3 = forward.cross(up).normalized()
 	
 	var possible_branches: Array[Dictionary] = [
-		{"forward": forward, "up": up},         # Straight
-		{"forward": right, "up": up},           # Right
-		{"forward": -right, "up": up},          # Left
-		{"forward": up, "up": -forward},        # Pitch Up
-		{"forward": -up, "up": forward}         # Pitch Down
+		{"forward": forward, "up": up},
+		{"forward": right, "up": up}, 
+		{"forward": -right, "up": up},
+		{"forward": up, "up": -forward},
+		{"forward": -up, "up": forward} 
 	]
 	
 	for branch in possible_branches:
